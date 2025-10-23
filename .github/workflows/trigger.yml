@@ -16,21 +16,11 @@ jobs:
           -u :$AZURE_DEVOPS_PAT \
           -H "Content-Type: application/json" \
           -X POST \
-          -d '{
-          "resources": {
-            "repositories": {
-              "self": {
-                "refName": "refs/heads/main"
-              }
-            }
-          },
-          "templateParameters": {
-            "myParam": "value"
-          }
-          }' \
-          https://devops-server.frontiersin.net/$COLLECTION/$PROJECT/_apis/pipelines/$PIPELINE_ID/runs?api-version=7.1
+          -d '{ "resources": { "repositories": { "self": { "refName": "refs/heads/main" } } }, "templateParameters": { "myParam": "$MY_PARAM" } }' \
+          https://devops-server.frontiersin.net/$COLLECTION/$PROJECT/_apis/pipelines/$PIPELINE_ID/runs?api-version=7.0
         env:
           COLLECTION: Cerberus
           PROJECT: Personal.Playground
           PIPELINE_ID: 863
           AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+          MY_PARAM: "Param from GitHub"
