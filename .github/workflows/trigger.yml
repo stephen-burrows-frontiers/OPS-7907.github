@@ -13,7 +13,7 @@ jobs:
       - name: trigger
         run: |
           curl
-          -u :AZURE_DEVOPS_PAT \
+          -u :$AZURE_DEVOPS_PAT \
           -H "Content-Type: application/json" \
           -X POST \
           -d '{
