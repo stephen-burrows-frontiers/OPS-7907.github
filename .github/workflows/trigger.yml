@@ -1,0 +1,36 @@
+name: Call DevOps-Server
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: trigger
+        run: |
+          curl
+          -u :AZURE_DEVOPS_PAT \
+          -H "Content-Type: application/json" \
+          -X POST \
+          -d '{
+          "resources": {
+            "repositories": {
+              "self": {
+                "refName": "refs/heads/main"
+              }
+            }
+          },
+          "templateParameters": {
+            "myParam": "value"
+          }
+          }' \
+          https://devops-server/$COLLECTION/$PROJECT/_apis/pipelines/$PIPELINE_ID/runs?api-version=7.1
+        env:
+          COLLECTION: Cerberus
+          PROJECT: Personal.Playground
+          PIPELINE_ID: 863
+          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
