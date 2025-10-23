@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: trigger
         run: |
-          curl
+          curl -L -s --fail-with-body \
           -u :$AZURE_DEVOPS_PAT \
           -H "Content-Type: application/json" \
           -X POST \
