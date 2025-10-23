@@ -28,7 +28,7 @@ jobs:
             "myParam": "value"
           }
           }' \
-          https://devops-server/$COLLECTION/$PROJECT/_apis/pipelines/$PIPELINE_ID/runs?api-version=7.1
+          https://devops-server.frontiersin.net/$COLLECTION/$PROJECT/_apis/pipelines/$PIPELINE_ID/runs?api-version=7.1
         env:
           COLLECTION: Cerberus
           PROJECT: Personal.Playground
